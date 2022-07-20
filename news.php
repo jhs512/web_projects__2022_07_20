@@ -1,10 +1,18 @@
 <meta charset="UTF-8" />
 <?php
-$articles = [
-  ["id" => 3, "title" => "속보 3"],
-  ["id" => 2, "title" => "속보 2"],
-  ["id" => 1, "title" => "속보 1"],
-];
+$db = mysqli_connect("localhost", "sbsst", "sbs123414", "site44");
+
+$sql = "
+SELECT *
+FROM article
+";
+$rs = mysqli_query($db, $sql);
+
+$articles = [];
+
+while ( $row = mysqli_fetch_assoc($rs) ) {
+  $articles[] = $row;
+}
 ?>
 <ul>
   <?php foreach ( $articles as $article ) { ?>
